@@ -10,14 +10,14 @@ export const handler: PreTokenGenerationV2TriggerHandler = async (event) => {
     claimsAndScopeOverrideDetails: {
       idTokenGeneration: {
         claimsToAddOrOverride: {
-          someCustomIdClaim: "wibble",
+          someCustomIdClaim: "sqirble",
         },
       },
       accessTokenGeneration: {
         claimsToAddOrOverride: {
           current_membership: currentMembership,
           memberships,
-          jabawocky: "hoof",
+          propFromAmplifyLamb: "blungabowl",
         },
         scopesToAdd: ["membership:" + currentMembership],
       },
