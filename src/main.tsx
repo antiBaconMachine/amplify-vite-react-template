@@ -7,15 +7,23 @@ import outputs from "../amplify_outputs.json";
 import { get } from "aws-amplify/api";
 
 Amplify.configure(outputs);
+const existingConfig = Amplify.getConfig();
+Amplify.configure({
+  ...existingConfig,
+  API: {
+    ...existingConfig.API,
+    REST: outputs.custom.API,
+  },
+});
 
 async function getItem() {
   try {
     const restOperation = get({
-      apiName: "myRestApi",
+      apiName: "myHttpApi",
       path: "items",
     });
     const response = await restOperation.response;
-    console.log("GET call succeeded: ", response);
+    console.log("GET call succeeded: ", await response.body.text());
   } catch (error) {
     console.log("GET call failed: ", error);
   }
